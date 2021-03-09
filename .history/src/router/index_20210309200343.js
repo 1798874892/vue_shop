@@ -23,11 +23,9 @@ router.beforeEach((to, from, next) => {
   // 分为三种情况1、如果用户访问登录页面 导航守卫不需要权限控制直接放行
   //            2、如果用户访问的不是登录页面而是有权限的页面 先判断是否有token导航守卫再决定是否放行
   //            3、最后如果确定存在token的话 直接放行
-
   if(to.path === '/login') return next()
-  // 从sessionStorage中获取到 保存的token值
+  // 获取token
   const tokenStr = window.sessionStorage.getItem('token')
-  // 没有token，强制跳转到登录页
   if(!tokenStr) return next('/login')
   next()
 })
