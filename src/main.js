@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
+<<<<<<< HEAD
 // 导入字体图标
 import './assets/fonts/iconfont.css'
 // 导入全局样式表
@@ -11,6 +12,8 @@ import axios from 'axios'
 // 配置请求的根路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http = axios
+=======
+>>>>>>> 08784de5d9d2d7298ad6d9352b53fc09fdaee8d0
 
 Vue.config.productionTip = false
 
