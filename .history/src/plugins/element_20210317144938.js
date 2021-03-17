@@ -25,9 +25,7 @@ import { Button,
          Dialog,
          MessageBox,
          Tag,
-         Tree,
-         Select,
-         Option} from 'element-ui'
+         Tree} from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -54,8 +52,6 @@ Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(Tag)
 Vue.use(Tree)
-Vue.use(Select)
-Vue.use(Option)
 // 将message组件挂载到vue原型 即可通过this获取到该组件进行系列操作
 Vue.prototype.$message = Message
 // 将MessageBox组件挂载到vue原型 即可通过this获取到该组件进行系列操作

@@ -69,12 +69,12 @@
               content="分配角色"
               placement="top"
               :enterable="false"
+              @click="setRole(scope.row)"
             >
               <el-button
                 type="warning"
                 icon="el-icon-setting"
                 size="mini"
-                @click="setRole(scope.row)"
               ></el-button>
             </el-tooltip>
           </template>
@@ -407,9 +407,9 @@ export default {
       }
       const { data:res } = await this.$http.put(`users/${this.userInfo.id}/role`, {rid: this.selectedRoleId})
       if(res.meta.status !== 200) {
-        return this.$message.error(res.meta.msg)
+        return this.$message.error('更新角色失败！')
       }
-      this.$message.success('更新角色成功')
+      this.$message.succuess('更新角色成功')
       this.getUserList()
       this.setRoleDialogVisible = false
     },
