@@ -29,9 +29,7 @@ import { Button,
          Select,
          Option,
          Cascader,
-         Alert,
-         Tabs,
-         TabPane} from 'element-ui'
+         Alert} from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -62,8 +60,6 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Cascader)
 Vue.use(Alert)
-Vue.use(Tabs)
-Vue.use(TabPane)
 // 将message组件挂载到vue原型 即可通过this获取到该组件进行系列操作
 Vue.prototype.$message = Message
 // 将MessageBox组件挂载到vue原型 即可通过this获取到该组件进行系列操作

@@ -8,11 +8,11 @@ import Rights from '../components/power/Rights.vue'
 import Roles from '../components/power/Roles.vue'
 import Cate from '../components/goods/Cate.vue'
 import Params from '../components/goods/Params.vue'
-import GoodsList from "../components/goods/List.vue";
-import GoodsAdd from "../components/goods/Add.vue";
-import GoodsEdit from "../components/goods/Edit.vue";
-import Order from "../components/order/Order.vue";
-import Report from "../components/report/Report.vue";
+import GoodsList from "../components/goods/List";
+import GoodsAdd from "../components/goods/Add";
+import GoodsEdit from "../components/goods/Edit";
+import Order from "../components/order/Order";
+import Report from "../components/report/Report";
 
 Vue.use(Router)
 

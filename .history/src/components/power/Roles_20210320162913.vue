@@ -216,7 +216,10 @@ export default {
     },
     // 修改角色对话框的关闭事件
     editRolesDialogClosed() {
-      this.$refs.editRolesFormRef.resetFields()
+      // Dialog的reset方法有bug 故直接为空
+      // this.$refs.editRolesFormRef.resetFields()
+      this.$refs.editRolesFormRef.roleName = ''
+      this.$refs.editRolesFormRef.roleDesc = ''
     },
     // 修改获取角色名字和描述
     async showEditRolesDialog(id) {
