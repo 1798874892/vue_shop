@@ -9,8 +9,6 @@
 
     <!-- 卡片视图区域 -->
     <el-card>
-      <!-- 警告区域 -->
-      <el-alert show-icon :closable="false" title="注意：修改地址和物流信息接口出错暂不开放" type="warning"></el-alert>
       <el-row>
         <el-col :span="8">
           <el-input placeholder="请输入内容">
@@ -61,7 +59,7 @@
     <el-dialog @close="addressDialogClosed" width="50%" title="修改地址" :visible.sync="addressVisible">
       <el-form label-width="100px" :model="addressForm" :rules="addressFormRules" ref="addressFormRef">
         <el-form-item label="省市区/县" prop="address1">
-          <el-cascader :options="cityData" v-model="addressForm.address1"></el-cascader>
+          <el-cascader :options="citydata" v-model="addressForm.address1"></el-cascader>
         </el-form-item>
         <el-form-item label="详细地址" prop="address2">
           <el-input v-model="addressForm.address2"></el-input>
@@ -74,24 +72,25 @@
     </el-dialog>
 
     <!-- 展示物流进度的对话框 -->
-    <el-dialog width="50%" title="物流地址" :visible.sync="progressVisible">
-      <!-- 物流信息时间线 -->
-      <el-timeline>
-        <el-timeline-item
-          v-for="(activity, index) in progressInfo"
-          :key="index"
-          :timestamp="activity.time">
-          {{activity.context}}
-        </el-timeline-item>
-      </el-timeline>
+    <el-dialog @close="addressDialogClosed" width="50%" title="物流地址" :visible.sync="progressVisible">
+      <el-form label-width="100px" :model="addressForm" :rules="addressFormRules" ref="addressFormRef">
+        <el-form-item label="省市区/县" prop="address1">
+          <el-cascader :options="cityData" v-model="addressForm.address1"></el-cascader>
+        </el-form-item>
+        <el-form-item label="详细地址" prop="address2">
+          <el-input v-model="addressForm.address2"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="addressVisible=false">确定</el-button>
+        <el-button @click="addressVisible=false">取消</el-button>
+      </span>
     </el-dialog>
-
-    
    </div>
 </template>
 
 <script>
-import cityData from './citydata'
+import citydata from './citydata'
 
 export default {
   name: 'Order',
@@ -117,7 +116,7 @@ export default {
           { required: true, message: '请填写详细地址', trigger: 'blur'}
         ]
       },
-      cityData,
+      citydata,
       progressVisible: false,
       progressInfo: []
     };
@@ -158,7 +157,6 @@ export default {
         return this.$message.error('获取物流进度失败！')
       }
       this.progressInfo = res.data
-
       this.progressVisible = true 
       console.log(this.progressInfo);
     }
@@ -167,14 +165,7 @@ export default {
 </script>
 
 <style scoped lang='less'>
-@import '../../plugins/timeline/timeline.css';
-@import '../../plugins/timeline-item/timeline-item.css';
-
   .el-cascader {
     width: 100%;
-  }
-
-  .el-alert {
-    margin-bottom: 10px;
   }
 </style>

@@ -9,8 +9,6 @@
 
     <!-- 卡片视图区域 -->
     <el-card>
-      <!-- 警告区域 -->
-      <el-alert show-icon :closable="false" title="注意：修改地址和物流信息接口出错暂不开放" type="warning"></el-alert>
       <el-row>
         <el-col :span="8">
           <el-input placeholder="请输入内容">
@@ -39,7 +37,7 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" icon="el-icon-edit" @click="showBox">修改</el-button>
-            <el-button type="success" size="mini" icon="el-icon-location" @click="showProgressBox">物流</el-button>
+            <el-button type="success" size="mini" icon="el-icon-location">物流</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -72,21 +70,6 @@
         <el-button @click="addressVisible=false">取消</el-button>
       </span>
     </el-dialog>
-
-    <!-- 展示物流进度的对话框 -->
-    <el-dialog width="50%" title="物流地址" :visible.sync="progressVisible">
-      <!-- 物流信息时间线 -->
-      <el-timeline>
-        <el-timeline-item
-          v-for="(activity, index) in progressInfo"
-          :key="index"
-          :timestamp="activity.time">
-          {{activity.context}}
-        </el-timeline-item>
-      </el-timeline>
-    </el-dialog>
-
-    
    </div>
 </template>
 
@@ -117,9 +100,7 @@ export default {
           { required: true, message: '请填写详细地址', trigger: 'blur'}
         ]
       },
-      cityData,
-      progressVisible: false,
-      progressInfo: []
+      cityData
     };
   },
   created() {
@@ -151,30 +132,13 @@ export default {
     // 修改地址对话框关闭事件
     addressDialogClosed() {
       this.$refs.addressFormRef.resetFields()
-    },
-    async showProgressBox() {
-      const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
-      if(res.meta.status !== 200) {
-        return this.$message.error('获取物流进度失败！')
-      }
-      this.progressInfo = res.data
-
-      this.progressVisible = true 
-      console.log(this.progressInfo);
     }
   },
 }
 </script>
 
 <style scoped lang='less'>
-@import '../../plugins/timeline/timeline.css';
-@import '../../plugins/timeline-item/timeline-item.css';
-
   .el-cascader {
     width: 100%;
-  }
-
-  .el-alert {
-    margin-bottom: 10px;
   }
 </style>

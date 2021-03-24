@@ -173,8 +173,4 @@ export default {
   .el-cascader {
     width: 100%;
   }
-
-  .el-alert {
-    margin-bottom: 10px;
-  }
 </style>

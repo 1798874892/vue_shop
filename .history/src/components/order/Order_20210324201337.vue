@@ -9,8 +9,6 @@
 
     <!-- 卡片视图区域 -->
     <el-card>
-      <!-- 警告区域 -->
-      <el-alert show-icon :closable="false" title="注意：修改地址和物流信息接口出错暂不开放" type="warning"></el-alert>
       <el-row>
         <el-col :span="8">
           <el-input placeholder="请输入内容">
@@ -172,9 +170,5 @@ export default {
 
   .el-cascader {
     width: 100%;
-  }
-
-  .el-alert {
-    margin-bottom: 10px;
   }
 </style>

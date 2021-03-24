@@ -37,13 +37,11 @@ import { Button,
          Checkbox,
          CheckboxGroup,
          Upload,
-         Timeline,
-         TimelineItem,
         } from 'element-ui'
 
 
-// import Timeline from './timeline/index.js'
-// import TimelineItem from './timeline-item/index.js'
+import Timeline from './timeline/index.js'
+import TimelineItem from './timeline-item/index.js'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -83,10 +81,6 @@ Vue.use(CheckboxGroup)
 Vue.use(Upload)
 Vue.use(Timeline)
 Vue.use(TimelineItem)
-
-// Vue.use(Timeline)
-// Vue.use(TimelineItem)
-
 // 将message组件挂载到vue原型 即可通过this获取到该组件进行系列操作
 Vue.prototype.$message = Message
 // 将MessageBox组件挂载到vue原型 即可通过this获取到该组件进行系列操作

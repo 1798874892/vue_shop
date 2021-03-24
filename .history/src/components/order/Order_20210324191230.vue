@@ -9,8 +9,6 @@
 
     <!-- 卡片视图区域 -->
     <el-card>
-      <!-- 警告区域 -->
-      <el-alert show-icon :closable="false" title="注意：修改地址和物流信息接口出错暂不开放" type="warning"></el-alert>
       <el-row>
         <el-col :span="8">
           <el-input placeholder="请输入内容">
@@ -38,8 +36,8 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" icon="el-icon-edit" @click="showBox">修改</el-button>
-            <el-button type="success" size="mini" icon="el-icon-location" @click="showProgressBox">物流</el-button>
+            <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
+            <el-button type="success" size="mini" icon="el-icon-location">物流</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -56,43 +54,10 @@
         background>
       </el-pagination>
     </el-card>
-
-    <!-- 修改地址的对话框 -->
-    <el-dialog @close="addressDialogClosed" width="50%" title="修改地址" :visible.sync="addressVisible">
-      <el-form label-width="100px" :model="addressForm" :rules="addressFormRules" ref="addressFormRef">
-        <el-form-item label="省市区/县" prop="address1">
-          <el-cascader :options="cityData" v-model="addressForm.address1"></el-cascader>
-        </el-form-item>
-        <el-form-item label="详细地址" prop="address2">
-          <el-input v-model="addressForm.address2"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="addressVisible=false">确定</el-button>
-        <el-button @click="addressVisible=false">取消</el-button>
-      </span>
-    </el-dialog>
-
-    <!-- 展示物流进度的对话框 -->
-    <el-dialog width="50%" title="物流地址" :visible.sync="progressVisible">
-      <!-- 物流信息时间线 -->
-      <el-timeline>
-        <el-timeline-item
-          v-for="(activity, index) in progressInfo"
-          :key="index"
-          :timestamp="activity.time">
-          {{activity.context}}
-        </el-timeline-item>
-      </el-timeline>
-    </el-dialog>
-
-    
    </div>
 </template>
 
 <script>
-import cityData from './citydata'
-
 export default {
   name: 'Order',
   data() {
@@ -103,23 +68,7 @@ export default {
         pagesize: 10
       },
       total: 0,
-      orderList: [],
-      addressVisible: false,
-      addressForm: {
-        address1: [],
-        address2: ''
-      },
-      addressFormRules: {
-        address1: [
-          { required: true, message: '请选择省市区县', trigger: 'blur'}
-        ],
-        address2: [
-          { required: true, message: '请填写详细地址', trigger: 'blur'}
-        ]
-      },
-      cityData,
-      progressVisible: false,
-      progressInfo: []
+      orderList: []
     };
   },
   created() {
@@ -143,38 +92,11 @@ export default {
     handleCurrentChange(newPage) {
       this.queryInfo.pagenum = newPage
       this.getOrderList()
-    },
-    // 展示修改地址的对话框
-    showBox() {
-      this.addressVisible = true
-    },
-    // 修改地址对话框关闭事件
-    addressDialogClosed() {
-      this.$refs.addressFormRef.resetFields()
-    },
-    async showProgressBox() {
-      const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
-      if(res.meta.status !== 200) {
-        return this.$message.error('获取物流进度失败！')
-      }
-      this.progressInfo = res.data
-
-      this.progressVisible = true 
-      console.log(this.progressInfo);
     }
   },
 }
 </script>
 
 <style scoped lang='less'>
-@import '../../plugins/timeline/timeline.css';
-@import '../../plugins/timeline-item/timeline-item.css';
 
-  .el-cascader {
-    width: 100%;
-  }
-
-  .el-alert {
-    margin-bottom: 10px;
-  }
 </style>

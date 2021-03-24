@@ -9,8 +9,6 @@
 
     <!-- 卡片视图区域 -->
     <el-card>
-      <!-- 警告区域 -->
-      <el-alert show-icon :closable="false" title="注意：修改地址和物流信息接口出错暂不开放" type="warning"></el-alert>
       <el-row>
         <el-col :span="8">
           <el-input placeholder="请输入内容">
@@ -153,11 +151,11 @@ export default {
       this.$refs.addressFormRef.resetFields()
     },
     async showProgressBox() {
-      const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
-      if(res.meta.status !== 200) {
-        return this.$message.error('获取物流进度失败！')
-      }
-      this.progressInfo = res.data
+      // const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
+      // if(res.meta.status !== 200) {
+      //   return this.$message.error('获取物流进度失败！')
+      // }
+      // this.progressInfo = res.data
 
       this.progressVisible = true 
       console.log(this.progressInfo);
@@ -167,14 +165,7 @@ export default {
 </script>
 
 <style scoped lang='less'>
-@import '../../plugins/timeline/timeline.css';
-@import '../../plugins/timeline-item/timeline-item.css';
-
   .el-cascader {
     width: 100%;
-  }
-
-  .el-alert {
-    margin-bottom: 10px;
   }
 </style>
