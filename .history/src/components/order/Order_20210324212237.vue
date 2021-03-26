@@ -68,7 +68,7 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="addressVisible=false">确定</el-button>
+        <el-button type="primary" @click="addAddress">确定</el-button>
         <el-button @click="addressVisible=false">取消</el-button>
       </span>
     </el-dialog>
@@ -184,6 +184,21 @@ export default {
           location: "",
         },
       ],
+      // 编辑对话框是否显示
+      editDialogVisible: false,
+      editForm: {
+        address1: [],
+        address2: ''
+      },
+      // 编辑表单验证规则
+      editFormRules: {
+        address1: [
+          { required: true, message: "请选择地址", trigger: "blur" }
+        ],
+        address2: [
+          { required: true, message: "请输入详细地址", trigger: "blur" },
+        ]
+      }
     };
   },
   created() {
@@ -226,6 +241,14 @@ export default {
       this.progressVisible = true 
       console.log(this.progressInfo);
     },
+    // 点击修改地址
+    addAddress() {
+      this.progressVisible = false
+    },
+    // 编辑对话框关闭事件
+    editClosed() {
+      this.$refs.editRef.resetFields()
+    }
   },
 }
 </script>

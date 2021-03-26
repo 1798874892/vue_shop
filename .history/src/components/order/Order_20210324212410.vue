@@ -184,6 +184,21 @@ export default {
           location: "",
         },
       ],
+      // 编辑对话框是否显示
+      editDialogVisible: false,
+      editForm: {
+        address1: [],
+        address2: ''
+      },
+      // 编辑表单验证规则
+      editFormRules: {
+        address1: [
+          { required: true, message: "请选择地址", trigger: "blur" }
+        ],
+        address2: [
+          { required: true, message: "请输入详细地址", trigger: "blur" },
+        ]
+      }
     };
   },
   created() {

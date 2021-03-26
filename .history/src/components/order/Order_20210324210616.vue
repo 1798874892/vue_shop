@@ -36,9 +36,9 @@
             {{scope.row.create_time | dateFormat}}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="200px">
+        <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" icon="el-icon-edit" @click="showBox">修改</el-button>
+            <el-button class="option" type="primary" size="mini" icon="el-icon-edit" @click="showBox">修改</el-button>
             <el-button type="success" size="mini" icon="el-icon-location" @click="showProgressBox">物流</el-button>
           </template>
         </el-table-column>
@@ -74,7 +74,7 @@
     </el-dialog>
 
     <!-- 展示物流进度的对话框 -->
-    <el-dialog width="60%" title="物流地址" :visible.sync="progressVisible">
+    <el-dialog width="50%" title="物流地址" :visible.sync="progressVisible">
       <!-- 物流信息时间线 -->
       <el-timeline>
         <el-timeline-item
@@ -117,73 +117,9 @@ export default {
           { required: true, message: '请填写详细地址', trigger: 'blur'}
         ]
       },
-      // 级联选择框的内容
       cityData,
       progressVisible: false,
-      progressInfo: [
-        {
-          time: "2018-05-10 09:39:00",
-          ftime: "2018-05-10 09:39:00",
-          context: "已签收,感谢使用顺丰,期待再次为您服务",
-          location: "",
-        },
-        {
-          time: "2018-05-10 08:23:00",
-          ftime: "2018-05-10 08:23:00",
-          context:
-            "[北京市]北京海淀育新小区营业点派件员 顺丰速运 95338正在为您派件",
-          location: "",
-        },
-        {
-          time: "2018-05-10 07:32:00",
-          ftime: "2018-05-10 07:32:00",
-          context: "快件到达 [北京海淀育新小区营业点]",
-          location: "",
-        },
-        {
-          time: "2018-05-10 02:03:00",
-          ftime: "2018-05-10 02:03:00",
-          context:
-            "快件在[北京顺义集散中心]已装车,准备发往 [北京海淀育新小区营业点]",
-          location: "",
-        },
-        {
-          time: "2018-05-09 23:05:00",
-          ftime: "2018-05-09 23:05:00",
-          context: "快件到达 [北京顺义集散中心]",
-          location: "",
-        },
-        {
-          time: "2018-05-09 21:21:00",
-          ftime: "2018-05-09 21:21:00",
-          context: "快件在[北京宝胜营业点]已装车,准备发往 [北京顺义集散中心]",
-          location: "",
-        },
-        {
-          time: "2018-05-09 13:07:00",
-          ftime: "2018-05-09 13:07:00",
-          context: "顺丰速运 已收取快件",
-          location: "",
-        },
-        {
-          time: "2018-05-09 12:25:03",
-          ftime: "2018-05-09 12:25:03",
-          context: "卖家发货",
-          location: "",
-        },
-        {
-          time: "2018-05-09 12:22:24",
-          ftime: "2018-05-09 12:22:24",
-          context: "您的订单将由HLA（北京海淀区清河中街店）门店安排发货。",
-          location: "",
-        },
-        {
-          time: "2018-05-08 21:36:04",
-          ftime: "2018-05-08 21:36:04",
-          context: "商品已经下单",
-          location: "",
-        },
-      ],
+      progressInfo: []
     };
   },
   created() {
@@ -217,15 +153,15 @@ export default {
       this.$refs.addressFormRef.resetFields()
     },
     async showProgressBox() {
-      // const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
-      // if(res.meta.status !== 200) {
-      //   return this.$message.error('获取物流进度失败！')
-      // }
-      // this.progressInfo = res.data
+      const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
+      if(res.meta.status !== 200) {
+        return this.$message.error('获取物流进度失败！')
+      }
+      this.progressInfo = res.data
 
       this.progressVisible = true 
       console.log(this.progressInfo);
-    },
+    }
   },
 }
 </script>
@@ -240,5 +176,9 @@ export default {
 
   .el-alert {
     margin-bottom: 10px;
+  }
+  
+  .option {
+    margin: 7px;
   }
 </style>

@@ -140,7 +140,7 @@ export default {
   .el-aside {
     background-color: #333744;
     height: calc(100vh);
-    
+    position: absolute;
     .el-menu {
       border-right: none;
     }

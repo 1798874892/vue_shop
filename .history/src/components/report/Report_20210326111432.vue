@@ -66,7 +66,7 @@ export default {
     
     const { data:res } = await this.$http.get('reports/type/1')
     if(res.meta.status !== 200) {
-      return this.$message.error('请求失败！')
+       this.$message.error('请求失败！')
     }
 
     // 指定图表的配置项和数据

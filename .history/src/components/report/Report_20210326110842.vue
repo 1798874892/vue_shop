@@ -62,7 +62,7 @@ export default {
   // DOM初始化完成
   async mounted() {
     // 基于准备好的dom初始化echarts实例
-    let myChart = echarts.init(document.getElementById('main'))
+    var myChart = echarts.init(document.getElementById('main'))
     
     const { data:res } = await this.$http.get('reports/type/1')
     if(res.meta.status !== 200) {

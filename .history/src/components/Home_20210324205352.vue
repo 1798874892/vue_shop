@@ -148,6 +148,7 @@ export default {
   
   .el-main {
     background-color: #eaedf1;
+    position: absolute;
     height: calc(100vh);
   }
 

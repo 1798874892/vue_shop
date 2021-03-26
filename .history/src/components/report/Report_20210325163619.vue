@@ -9,7 +9,7 @@
 
     <el-card>
       <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-      <div id="main" style="width: 100%;height:700px" ref="chart"></div>
+      <div id="main" style="width: 100%;height:700px"></div>
     </el-card>
    </div>
 </template>
@@ -62,7 +62,7 @@ export default {
   // DOM初始化完成
   async mounted() {
     // 基于准备好的dom初始化echarts实例
-    let myChart = echarts.init(document.getElementById('main'))
+    var myChart = echarts.init(document.getElementById('main'))
     
     const { data:res } = await this.$http.get('reports/type/1')
     if(res.meta.status !== 200) {
@@ -73,7 +73,10 @@ export default {
     const result = _.merge(res.data, this.options)
     // 展示数据
     myChart.setOption(result)
-  }
+  },
+  methods: {
+
+  },
 }
 </script>
 

@@ -74,7 +74,7 @@
     </el-dialog>
 
     <!-- 展示物流进度的对话框 -->
-    <el-dialog width="60%" title="物流地址" :visible.sync="progressVisible">
+    <el-dialog width="50%" title="物流地址" :visible.sync="progressVisible">
       <!-- 物流信息时间线 -->
       <el-timeline>
         <el-timeline-item
@@ -184,6 +184,21 @@ export default {
           location: "",
         },
       ],
+      // 编辑对话框是否显示
+      editDialogVisible: false,
+      editForm: {
+        address1: [],
+        address2: ''
+      },
+      // 编辑表单验证规则
+      editFormRules: {
+        address1: [
+          { required: true, message: "请选择地址", trigger: "blur" }
+        ],
+        address2: [
+          { required: true, message: "请输入详细地址", trigger: "blur" },
+        ]
+      }
     };
   },
   created() {
@@ -217,15 +232,15 @@ export default {
       this.$refs.addressFormRef.resetFields()
     },
     async showProgressBox() {
-      // const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
-      // if(res.meta.status !== 200) {
-      //   return this.$message.error('获取物流进度失败！')
-      // }
-      // this.progressInfo = res.data
+      const { data: res } = await this.$http.get('/kuaidi/804909574412544580')
+      if(res.meta.status !== 200) {
+        return this.$message.error('获取物流进度失败！')
+      }
+      this.progressInfo = res.data
 
       this.progressVisible = true 
       console.log(this.progressInfo);
-    },
+    }
   },
 }
 </script>
