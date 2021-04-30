@@ -1,7 +1,5 @@
 module.exports = {
     lintOnSave: false,
-    // 配置跨域请求
-
      // 项目优化通过chainWebpack自定义打包入口
      chainWebpack: config => {
         // 发布模式
@@ -17,7 +15,7 @@ module.exports = {
                 echarts: 'echarts',
                 nprogress: 'NProgress',
                 'vue-quill-editor': 'VueQuillEditor',
-//                "ElementUI": "element-ui"
+                "ElementUI": "element-ui"
             })
 
             config.plugin('html').tap(args => {

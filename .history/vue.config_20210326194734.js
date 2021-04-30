@@ -1,7 +1,5 @@
 module.exports = {
     lintOnSave: false,
-    // 配置跨域请求
-
      // 项目优化通过chainWebpack自定义打包入口
      chainWebpack: config => {
         // 发布模式
@@ -17,23 +15,13 @@ module.exports = {
                 echarts: 'echarts',
                 nprogress: 'NProgress',
                 'vue-quill-editor': 'VueQuillEditor',
-//                "ElementUI": "element-ui"
-            })
-
-            config.plugin('html').tap(args => {
-                args[0].isProd = true
-                return args
+                "ElementUI": "element-ui"
             })
         })
         
         // 开发模式
         config.when(process.env.NODE_ENV === 'development', config => {
             config.entry('app').clear().add('./src/main-dev.js')
-
-            config.plugin('html').tap(args => {
-                args[0].isProd = false
-                return args
-            })
         })
     }
 }

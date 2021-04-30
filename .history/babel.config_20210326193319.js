@@ -7,7 +7,8 @@ if(process.env.NODE_ENV === 'production') {
 
 module.exports = {
   presets: [
-    '@vue/cli-plugin-babel/preset'
+    // '@vue/cli-plugin-babel/preset'
+    "@vue/app"
   ],
   plugins: [
     [
@@ -18,8 +19,6 @@ module.exports = {
       }
     ],
     // 发布产品时候的插件数组
-    ...prodPlugins,
-    // 路由懒加载插件
-    '@babel/plugin-syntax-dynamic-import'
+    ...prodPlugins
   ]
 }

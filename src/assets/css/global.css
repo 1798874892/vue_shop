@@ -22,12 +22,12 @@ body,
 }
 
 .el-pagination {
-    margin-top: 15px
+    margin-top: 15px;
 }
 
-.el-cascader-menu {
+/*.el-cascader-menu {
     height: 300px;
-}
+}*/
 
 .el-steps {
     margin: 20px 0;
